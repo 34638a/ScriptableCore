@@ -95,11 +95,9 @@ public class EventEngine {
 			List<Scriptable<?>> activeScriptables = LoadedScriptables.getActiveScriptables();
 			activeScriptables.stream()
 					.filter(scriptable -> scriptableCallbackList.contains(scriptable.getClass()))
-					.forEach(scriptable -> {
-						scriptableCallbacks.stream()
-								.filter(callback -> callback.type().isInstance(scriptable))
-								.forEach(callback -> callback.invoke(scriptable, event));
-						}
+					.forEach(scriptable -> scriptableCallbacks.stream()
+							.filter(callback -> callback.type().isInstance(scriptable))
+							.forEach(callback -> callback.invoke(scriptable, event))
 					);
 		}
 		
@@ -117,7 +115,7 @@ public class EventEngine {
 	
 	
 	private class CallbackList {
-		private List<? extends Class<?>> callbacks;
+		private final List<? extends Class<?>> callbacks;
 		
 		CallbackList(List<CallbackReference> callbacks) {
 			this.callbacks = callbacks.stream()
