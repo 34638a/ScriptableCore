@@ -24,6 +24,7 @@ public abstract class Event<E extends Event<?>> {
 	/**
 	 * Dispatch the event.
 	 */
+	@SuppressWarnings("unchecked")
 	public E dispatch() {
 		if (!this.dispatched.getAndSet(true)) {
 			EventEngine.scheduleEvent(this);

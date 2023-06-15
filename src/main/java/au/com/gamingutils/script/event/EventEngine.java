@@ -18,6 +18,7 @@ import java.util.logging.Level;
 
 @Log
 @UtilityClass
+@SuppressWarnings("unchecked")
 public class EventEngine {
 	
 	private static final HashMap<Class<? extends Event<?>>, List<Method>> staticEventListeners = new HashMap<>();

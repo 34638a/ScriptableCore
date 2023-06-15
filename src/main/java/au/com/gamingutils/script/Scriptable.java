@@ -26,6 +26,14 @@ public abstract class Scriptable<S extends Scriptable<?>> {
 		LoadedScriptables.scriptables.add(this);
 	}
 	
+	
+	/**
+	 * Destroy the scriptable.
+	 * Destroying a scriptable will remove it from the list of loaded scriptables.
+	 * It cannot be re-added to the list after being destroyed.
+	 * @return this.
+	 */
+	@SuppressWarnings("unchecked")
 	public S destroy() {
 		LoadedScriptables.scriptables.remove(this);
 		return (S) this;
@@ -35,6 +43,7 @@ public abstract class Scriptable<S extends Scriptable<?>> {
 	 * Enable the scriptable.
 	 * @return this.
 	 */
+	@SuppressWarnings("unchecked")
 	public S enable() {
 		active = true;
 		return (S) this;
@@ -44,6 +53,7 @@ public abstract class Scriptable<S extends Scriptable<?>> {
 	 * Disable the scriptable.
 	 * @return this.
 	 */
+	@SuppressWarnings("unchecked")
 	public S disable() {
 		active = false;
 		return (S) this;
@@ -54,6 +64,7 @@ public abstract class Scriptable<S extends Scriptable<?>> {
 	 * @param component Component to register.
 	 * @return this.
 	 */
+	@SuppressWarnings("unchecked")
 	public S registerComponent(@NonNull Component<?> component) {
 		if (component.hasHost()) throw new ComponentBindingException(component.getComponentName());
 		components.add(component);
@@ -67,6 +78,7 @@ public abstract class Scriptable<S extends Scriptable<?>> {
 	 * @param component Component to unregister.
 	 * @return this.
 	 */
+	@SuppressWarnings("unchecked")
 	public S unregisterComponent(@NonNull Component<?> component) {
 		if (component.hasHost()) {
 			components.remove(component);
@@ -119,6 +131,7 @@ public abstract class Scriptable<S extends Scriptable<?>> {
 		 * Enable the component.
 		 * @return this.
 		 */
+		@SuppressWarnings("unchecked")
 		public final C enable() {
 			this.active = true;
 			return (C)this;
@@ -128,6 +141,7 @@ public abstract class Scriptable<S extends Scriptable<?>> {
 		 * Disable the component.
 		 * @return this.
 		 */
+		@SuppressWarnings("unchecked")
 		public final C disable() {
 			this.active = false;
 			return (C)this;
